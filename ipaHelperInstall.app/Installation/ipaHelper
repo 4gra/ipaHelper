@@ -42,7 +42,7 @@ function ipa_in_wd
 {
 cd "$wd"
 find ./ -type f -maxdepth 1 -iname "*.ipa" | while read f; do
-	f="${f:3}"
+	f="${f:2}"
 	echo "$f"
 	return
 done
@@ -435,7 +435,7 @@ if [ "$opt_profile" != "" ]; then
 fi
 cd "$bd"
 find ./ -type f -maxdepth 1 -iname "*.mobileprovision" | while read f; do
-        f="${f:3}"
+        f="${f:2}"
         echo "$bd/$f"
         break
 done
@@ -1094,7 +1094,7 @@ elif [ "$filetype" = "ipa" ]; then
     fi
     cd "/tmp/ipa_helper/$file_id/Payload" 
     app="$(find ./ -type d -maxdepth 1 -iname "*.app*")"
-    ad="/tmp/ipa_helper/$file_id/Payload/${app:3}" 
+    ad="/tmp/ipa_helper/$file_id/Payload/${app:2}" 
 elif [ "$filetype" = "zip" ]; then
     mkdir -p "/tmp/ipa_helper/$file_id"
     unzip -q "$ipa" -d "/tmp/ipa_helper/$file_id/Payload" 1>&3 2>&4
@@ -1108,7 +1108,7 @@ elif [ "$filetype" = "zip" ]; then
     if [ "$app" = "" ]; then
         problem_encountered "zip file does not contain app file"
     fi
-    ad="/tmp/ipa_helper/$file_id/Payload/${app:3}"
+    ad="/tmp/ipa_helper/$file_id/Payload/${app:2}"
 fi
 
 #echo "ipa: $ipa ad: $ad"
